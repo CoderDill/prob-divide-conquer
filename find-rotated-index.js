@@ -1,10 +1,16 @@
 function findRotatedIndex(arr, target) {
-        let start = 0
         let pivotPnt = findPivotPnt(arr)
-        let end = pivotPnt - 1
+        if (pivotPnt > 0 && target >= arr[0] && target <= arr[pivotPnt - 1]){
+           return binarySearch(arr, target, 0, pivotPnt - 1)
+        }else {
+           return binarySearch(arr, target, pivotPnt, arr.length -1)
+        }
+        
+}
 
-        while(start <= end) {
-            console.log(start, end)
+function binarySearch(arr, target, start, end) {
+    while(start <= end) {
+            
             let mid = Math.floor((start + end) / 2)
             
             if(arr[mid] === target) return mid
@@ -29,5 +35,4 @@ function findPivotPnt(arr) {
     }
 }
 
-findRotatedIndex([6, 7, 8, 9, 1, 2, 3, 4], 3)
 module.exports = findRotatedIndex;
